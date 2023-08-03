@@ -62,6 +62,28 @@ X_validate.drop(columns='Game', inplace=True)
 ################################# Decision Tree #################################
 
 
+def model_tree_test():
+    
+    # calling the data
+    X_train, y_train, X_validate, y_validate, X_test, y_test = X_y_split()
+
+    # remove game column for fit and predict
+    X_train.drop(columns='Game', inplace=True)
+    X_validate.drop(columns='Game', inplace=True)
+    X_test.drop(columns='Game', inplace=True)
+
+    # creating model
+    clf = DecisionTreeClassifier(max_depth=6, random_state=42)  
+    
+    # fiiting the model
+    clf.fit(X_train, y_train)
+    
+    # getting the score
+    test_score = clf.score(X_test, y_test)
+    
+    print(f"Accuracy of KNN on test data is: {test_score}")
+
+
 
 
 def decision_tree():
